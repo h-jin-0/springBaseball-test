@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cos.springBaseball.repository.BaseballRepository">
+
+	<select id="TeamAll" resultType="com.cos.springBaseball.dto.ResponseTeamDto">
+		select * from team order by id desc
+	</select>
+
+	<select id="playerByTeamId" resultType="com.cos.springBaseball.dto.ResponsePlayerDto">
+		select * from player where
+		teamId=#{id}
+	</select>
+
+	<select id="findByid" resultType="com.cos.springBaseball.dto.ResponseDetailDto">
+		select player.id playerId,player.name playerName,team.id teamId,team.name teamName,team.year 
+		from player inner join team 
+		on player.teamId=team.id where player.id=#{id}; 
+	</select>
+
+</mapper>
